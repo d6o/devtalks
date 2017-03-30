@@ -23,7 +23,6 @@ func (a *App) Run(addr string) {
 }
 
 func (a *App) SetRoutes() {
-	a.Router.HandleFunc("/info", a.serveInfo).Methods("GET")
 	a.Router.HandleFunc("/memory", a.serveMemory).Methods("GET")
 	a.Router.HandleFunc("/os", a.serveOs).Methods("GET")
 }
