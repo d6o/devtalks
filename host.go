@@ -14,7 +14,7 @@ func NewInfo() Info {
 	return &Host{}
 }
 
-type Host struct {}
+type Host struct{}
 
 func (h *Host) Host() (string, error) {
 	info, err := host.Info()

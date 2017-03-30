@@ -22,25 +22,18 @@ func (a *App) serveOs(w http.ResponseWriter, r *http.Request) {
 }
 
 type MemoryResponse struct {
-	Total uint64 `json:"total"`
-	Free  uint64 `json:"free"`
-	Used float64 `json:"used"`
+	Total uint64  `json:"total"`
+	Free  uint64  `json:"free"`
+	Used  float64 `json:"used"`
 }
 
 func (a *App) serveMemory(w http.ResponseWriter, r *http.Request) {
 	var resp MemoryResponse
 	var err error
-	resp.Total,resp.Free, resp.Used, err = NewInfo().Memory()
+	resp.Total, resp.Free, resp.Used, err = NewInfo().Memory()
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
 	respondWithJSON(w, http.StatusOK, resp)
-}
-
-type InfoResponse struct {
-	OS string `json:"os"`
-	Total uint64 `json:"total"`
-	Free  uint64 `json:"free"`
-	Used float64 `json:"used"`
 }

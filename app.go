@@ -10,12 +10,10 @@ type App struct {
 	Router *mux.Router
 }
 
-
-func (a *App) Initialize() error {
+func (a *App) Initialize() {
 	a.Router = mux.NewRouter()
 
 	a.SetRoutes()
-	return nil
 }
 
 func (a *App) Run(addr string) {
@@ -23,6 +21,8 @@ func (a *App) Run(addr string) {
 }
 
 func (a *App) SetRoutes() {
-	a.Router.HandleFunc("/memory", a.serveMemory).Methods("GET")
-	a.Router.HandleFunc("/os", a.serveOs).Methods("GET")
+	a.Router.HandleFunc("/memory",
+		a.serveMemory).Methods("GET")
+	a.Router.HandleFunc("/os",
+		a.serveOs).Methods("GET")
 }
